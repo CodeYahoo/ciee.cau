@@ -1,0 +1,3 @@
+import { AlertTriangle, RadioTower, Tractor, Zap } from 'lucide-react'
+import type { Tractor as T } from '../../types'
+export function Stats({tractors}:{tractors:T[]}){const data=[['接入农机',tractors.length,'台',Tractor,'blue'],['在线',tractors.filter(t=>t.status!=='offline').length,'台',RadioTower,'green'],['作业中',tractors.filter(t=>t.status==='working').length,'台',Zap,'amber'],['今日告警',tractors.filter(t=>t.status==='alarm').length+1,'起',AlertTriangle,'red']] as const;return <div className="stats">{data.map(([l,v,u,I,c])=><div className={`stat ${c}`} key={l}><I/><div><span>{l}</span><strong>{v}</strong><small>{u}</small></div></div>)}</div>}
